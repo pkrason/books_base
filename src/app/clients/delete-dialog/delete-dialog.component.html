@@ -1,0 +1,10 @@
+<mat-toolbar>
+  <span>Usuwanie kontaktu</span>
+  <span class="fill-remaining-space"></span>
+  <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
+</mat-toolbar>
+<div class="delete-container">
+  <span>Czy na pewno usunąć kontakt?</span>
+</div>
+<button mat-raised-button color="warn" id="no-button" [mat-dialog-close]="false" class="delete-buttons" tabindex="-1">Nie</button>
+<button mat-raised-button color="primary" id="yes-button" [mat-dialog-close]="true" class="delete-buttons" tabindex="-1">Tak</button>

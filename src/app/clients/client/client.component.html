@@ -1,0 +1,102 @@
+<mat-toolbar>
+  <span>{{ service.form.controls['$key'].value?"Edycja kontaktu":"Nowy kontakt" }}</span>
+  <span class="fill-remaining-space"></span>
+  <mat-icon id="close-icon" (click)="onClose()">close</mat-icon>
+</mat-toolbar>
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key" />
+        <mat-form-field>
+          <input
+            #pseudonim
+            formControlName="pseudonim"
+            matInput
+            placeholder="Pseudonim"
+            maxlength="24"
+          />
+          <mat-hint align="end">{{ pseudonim.value.length }} / 24</mat-hint>
+          <mat-error>To pole jest wymagane.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            #imie
+            formControlName="imie"
+            matInput
+            placeholder="Imię"
+            maxlength="24"
+          />
+
+          <mat-hint align="end">{{ imie.value.length }} / 24</mat-hint>
+          <mat-error>To pole jest wymagane.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            #nazwisko
+            formControlName="nazwisko"
+            matInput
+            placeholder="Nazwisko"
+            maxlength="24"
+          />
+          <mat-hint align="end">{{ nazwisko.value.length }} / 24</mat-hint>
+          <mat-error>To pole jest wymagane.</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+        <mat-form-field>
+          <input
+            #email
+            formControlName="email"
+            matInput
+            placeholder="Adres e-mail"
+            maxlength="32"
+          />
+          <mat-hint align="end">{{ email.value.length }} / 32</mat-hint>
+          <mat-error *ngIf="service.form.controls['email'].errors?.required"
+            >To pole jest wymagane.</mat-error
+          >
+          <mat-error *ngIf="service.form.controls['email'].errors?.email"
+            >Podaj poprawny adres e-mail.</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            #telefon
+            formControlName="telefon"
+            matInput
+            placeholder="Numer telefonu"
+            maxlength="12"
+          />
+          <mat-hint align="end">{{ telefon.value.length }} / 12</mat-hint>
+          <mat-error *ngIf="service.form.controls['telefon'].errors?.required"
+            >To pole jest wymagane.</mat-error
+          >
+          <mat-error *ngIf="service.form.controls['telefon'].errors?.minlength"
+            >Numer telefonu musi zwierać co najmniej 9 cyfr.</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select formControlName="plec" placeholder="Płeć">
+            <ng-container *ngFor="let gender of genders">
+              <mat-option value="{{ gender.value }}">{{
+                gender.value
+              }}</mat-option>
+            </ng-container>
+          </mat-select>
+          <mat-error>To pole jest wymagane.</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div class="button-row">
+    <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">
+      Zapisz
+    </button>
+    <button mat-raised-button color="warn" (click)="onReset()">Wyczyść</button>
+  </div>
+</form>
+
+
