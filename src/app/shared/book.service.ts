@@ -12,19 +12,22 @@ export class BookService {
   booksList: AngularFireList<any>;
   bookId: number = 1;
 
+
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),
-    id: new FormControl(this.bookId),
+    id: new FormControl(null),
     tytul: new FormControl('', Validators.required),
     autor: new FormControl('', Validators.required),
     dataWydania: new FormControl('', Validators.required),
     pozyczona: new FormControl('', Validators.required),
   });
 
+
   getBooks() {
     this.booksList = this.firebase.list('book-base');
     return this.booksList.snapshotChanges();
   }
+
 
   insertBook(book) {
     this.booksList.push({
@@ -34,13 +37,12 @@ export class BookService {
       dataWydania: book.dataWydania,
       pozyczona: book.pozyczona,
     });
-    console.log(this.bookId);
   }
 
   updateClient(book) {
-    this.booksList.update(client.$key,
+    this.booksList.update(book.$key,
       {
-        id: this.bookId,
+      id: book.id,
       tytul: book.tytul,
       autor: book.autor,
       dataWydania: book.dataWydania,
@@ -52,8 +54,8 @@ export class BookService {
     this.booksList.remove($key);
   }
 
-  populateForm(client) {
-    this.form.setValue(client);
+  populateForm(book) {
+    this.form.setValue(book);
   }
 
 }

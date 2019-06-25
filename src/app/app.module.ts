@@ -11,7 +11,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './booksBase/home.component';
-import { DetailsComponent } from './booksBase/details/details.component';
 import { BookService } from './shared/book.service';
 import { BookFormComponent } from './booksBase/bookForm/book-form.component';
 import { from } from 'rxjs';
@@ -24,7 +23,6 @@ import { DeleteDialogComponent } from './booksBase/delete-dialog/delete-dialog.c
   declarations: [
     AppComponent,
     HomeComponent,
-    DetailsComponent,
     BookFormComponent,
     BookListComponent,
     DeleteDialogComponent

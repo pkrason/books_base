@@ -18,6 +18,7 @@ export class BookListComponent implements OnInit {
               private notifications: NotificationsService,
               private dialogService: DialogService) { }
 
+
   booksList: MatTableDataSource<any>;
   displayedColumns: string[] = ['id', 'tytul', 'autor', 'dataWydania', 'pozyczona', 'actions'];
   @ViewChild(MatSort) sort: MatSort;
@@ -37,7 +38,9 @@ export class BookListComponent implements OnInit {
         this.booksList.sort = this.sort;
         this.booksList.paginator = this.paginator;
       });
-  }
+
+    }
+
 
 
   onSearchClear() {
