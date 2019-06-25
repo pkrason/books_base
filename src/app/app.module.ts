@@ -10,25 +10,23 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClientsComponent } from './clients/clients.component';
-import { DetailsComponent } from './clients/details/details.component';
-import { EditComponent } from './clients/edit/edit.component';
-import { ClientService } from './shared/client.service';
-import { ClientComponent } from './clients/client/client.component';
+import { HomeComponent } from './booksBase/home.component';
+import { DetailsComponent } from './booksBase/details/details.component';
+import { BookService } from './shared/book.service';
+import { BookFormComponent } from './booksBase/bookForm/book-form.component';
 import { from } from 'rxjs';
 import { environment } from '../environments/environment';
-import { ClientListComponent } from './clients/client-list/client-list.component';
-import { DeleteDialogComponent } from './clients/delete-dialog/delete-dialog.component';
+import { BookListComponent } from './booksBase/bookList/book-list.component';
+import { DeleteDialogComponent } from './booksBase/delete-dialog/delete-dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClientsComponent,
+    HomeComponent,
     DetailsComponent,
-    EditComponent,
-    ClientComponent,
-    ClientListComponent,
+    BookFormComponent,
+    BookListComponent,
     DeleteDialogComponent
   ],
   imports: [
@@ -46,8 +44,8 @@ import { DeleteDialogComponent } from './clients/delete-dialog/delete-dialog.com
       preventDuplicates: true
     })
   ],
-  providers: [ClientService],
+  providers: [BookService],
   bootstrap: [AppComponent],
-  entryComponents: [ClientComponent, DeleteDialogComponent]
+  entryComponents: [BookFormComponent, DeleteDialogComponent]
 })
 export class AppModule { }

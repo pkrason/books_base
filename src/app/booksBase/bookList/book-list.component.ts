@@ -1,31 +1,31 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ClientService } from 'src/app/shared/client.service';
+import { BookService } from 'src/app/shared/book.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { ClientComponent } from '../client/client.component';
+import { BookFormComponent } from '../bookForm/book-form.component';
 import { NotificationsService } from '../../shared/notifications.service';
 import { DialogService } from 'src/app/shared/dialog.service';
 
 @Component({
   selector: 'app-client-list',
-  templateUrl: './client-list.component.html',
-  styleUrls: ['./client-list.component.scss']
+  templateUrl: './book-list.component.html',
+  styleUrls: ['./book-list.component.scss']
 })
-export class ClientListComponent implements OnInit {
+export class BookListComponent implements OnInit {
 
-  constructor(private service: ClientService,
+  constructor(private service: BookService,
               private dialog: MatDialog,
               private notifications: NotificationsService,
               private dialogService: DialogService) { }
 
-  clientList: MatTableDataSource<any>;
-  displayedColumns: string[] = ['pseudonim', 'imie', 'nazwisko', 'email', 'telefon', 'plec', 'actions'];
+  booksList: MatTableDataSource<any>;
+  displayedColumns: string[] = ['id', 'tytul', 'autor', 'dataWydania', 'pozyczona', 'actions'];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string;
 
   ngOnInit() {
-    this.service.getClients().subscribe(
+    this.service.getBooks().subscribe(
       list => {
         const array = list.map(item => {
           return {
@@ -33,9 +33,9 @@ export class ClientListComponent implements OnInit {
             ...item.payload.val()
           };
         });
-        this.clientList = new MatTableDataSource(array);
-        this.clientList.sort = this.sort;
-        this.clientList.paginator = this.paginator;
+        this.booksList = new MatTableDataSource(array);
+        this.booksList.sort = this.sort;
+        this.booksList.paginator = this.paginator;
       });
   }
 
@@ -47,7 +47,7 @@ export class ClientListComponent implements OnInit {
   }
 
   applyFilter() {
-    this.clientList.filter = this.searchKey.trim().toLowerCase();
+    this.booksList.filter = this.searchKey.trim().toLowerCase();
   }
 
   onAdd() {
@@ -56,7 +56,7 @@ export class ClientListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '65%';
-    this.dialog.open(ClientComponent, dialogConfig);
+    this.dialog.open(BookFormComponent, dialogConfig);
   }
 
   onEdit(row) {
@@ -66,7 +66,7 @@ export class ClientListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '65%';
-    this.dialog.open(ClientComponent, dialogConfig);
+    this.dialog.open(BookFormComponent, dialogConfig);
   }
 
   onDelete($key) {

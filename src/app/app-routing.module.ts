@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EditComponent } from './clients/edit/edit.component';
-import { DetailsComponent } from './clients/details/details.component';
-import { ClientListComponent } from './clients/client-list/client-list.component';
-import { ClientComponent } from './clients/client/client.component';
+import { DetailsComponent } from './booksBase/details/details.component';
+import { BookListComponent } from './booksBase/bookList/book-list.component';
+import { BookFormComponent } from './booksBase/bookForm/book-form.component';
 
 const routes: Routes = [
-  { path: '', component: ClientListComponent},
-  { path: 'edit', component: EditComponent },
+  { path: '', component: BookListComponent},
   { path: 'details', component: DetailsComponent,
   children: [
     {
       path: ':id',
-      component: ClientComponent
+      component: BookFormComponent 
     }
   ] }
 ];

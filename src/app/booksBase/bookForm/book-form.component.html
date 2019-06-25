@@ -1,0 +1,70 @@
+<mat-toolbar>
+  <span>{{
+    service.form.controls["$key"].value ? "Edycja książki" : "Nowa książka"
+  }}</span>
+  <span class="fill-remaining-space"></span>
+  <mat-icon id="close-icon" (click)="onClose()">close</mat-icon>
+</mat-toolbar>
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key" />
+        <mat-form-field>
+          <input
+            #tytul
+            formControlName="tytul"
+            matInput
+            placeholder="Tytuł"
+            maxlength="80"
+          />
+          <mat-hint align="end">{{ tytul.value.length }} / 80</mat-hint>
+          <mat-error>To pole jest wymagane.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            #autor
+            formControlName="autor"
+            matInput
+            placeholder="Autor"
+            maxlength="50"
+          />
+
+          <mat-hint align="end">{{ autor.value.length }} / 50</mat-hint>
+          <mat-error>To pole jest wymagane.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            #dataWydania
+            formControlName="dataWydania"
+            matInput
+            placeholder="Data wydania"
+            maxlength="24"
+          />
+          <mat-hint align="end">{{ dataWydania.value.length }} / 24</mat-hint>
+          <mat-error>To pole jest wymagane.</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <mat-select formControlName="pozyczona" placeholder="Czy pożyczyczona">
+          <ng-container>
+            <mat-option value="nie">Nie</mat-option>
+            <mat-option value="tak">Tak</mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error>To pole jest wymagane.</mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div class="button-row">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="service.form.invalid"
+    >
+      Zapisz
+    </button>
+    <button mat-raised-button color="warn" (click)="onReset()">Wyczyść</button>
+  </div>
+</form>

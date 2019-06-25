@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig :{
-    apiKey: "AIzaSyAE1etlLP6vFm0jLXnF-4JZVlUop8OT5mY",
-    authDomain: "kontakty-ibspl.firebaseapp.com",
-    databaseURL: "https://kontakty-ibspl.firebaseio.com",
-    projectId: "kontakty-ibspl",
-    storageBucket: "kontakty-ibspl.appspot.com",
-    messagingSenderId: "542520171963",
-    appId: "1:542520171963:web:6f4b56c264739d2d"
+    apiKey: "AIzaSyDL_rKbC0fxgVRrHEkeEkLv6N8IdfsAFLY",
+    authDomain: "book-base.firebaseapp.com",
+    databaseURL: "https://book-base.firebaseio.com",
+    projectId: "book-base",
+    storageBucket: "",
+    messagingSenderId: "349865558978",
+    appId: "1:349865558978:web:8831c005daad18b8"
   }
 };
 

@@ -1,27 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from '../../shared/client.service';
+import { BookService } from '../../shared/book.service';
 import { NotificationsService } from '../../shared/notifications.service';
 import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-client',
-  templateUrl: './client.component.html',
-  styleUrls: ['./client.component.scss']
+  templateUrl: './book-form.component.html',
+  styleUrls: ['./book-form.component.scss']
 })
-export class ClientComponent implements OnInit {
+export class BookFormComponent implements OnInit {
 
-  constructor(public service: ClientService,
+  constructor(public service: BookService,
     private notifications: NotificationsService,
-    private dialogRef: MatDialogRef<ClientComponent>) { }
+    private dialogRef: MatDialogRef<BookFormComponent>) { }
 
-  genders = [
-    { id: 1, value: 'Kobieta' },
-    { id: 2, value: 'Mężczyzna' },
-    { id: 3, value: 'Nieokreślona' }
-  ];
+    bookStatus = [
+      'Pożyczona',
+      'Na półce w sypialni',
+      'Na półce w małym pokoju',
+      'Na półce w dużym pokoju',
+      'Zniszczona'
+    ];
 
   ngOnInit() {
-    this.service.getClients();
+    this.service.getBooks();
   }
 
   onReset() {
@@ -31,7 +33,7 @@ export class ClientComponent implements OnInit {
   onSubmit() {
     if (this.service.form.valid) {
       if (!this.service.form.get('$key').value) {
-        this.service.insertClient(this.service.form.value);
+        this.service.insertBook(this.service.form.value);
         this.notifications.showSuccess();
         this.onClose();
       } else {
