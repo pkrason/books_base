@@ -1,6 +1,6 @@
 # Kontakty
 
-BAza książek z wykorzystaniem bazy Firebase.
+Baza książek z wykorzystaniem bazy Firebase.
 
 
 ## Instalacja i uruchomienie
